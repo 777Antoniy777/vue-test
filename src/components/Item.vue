@@ -1,13 +1,13 @@
 <template>
-  <li v-bind:class="{done: item.status}">
+  <li v-bind:class="{done: item.completed}">
     <input type="checkbox"
-           v-on:change="item.status = !item.status"
+           @change="item.completed = !item.completed"
     >
 
-    {{item.content}}
+    {{item.title | uppercase}}
 
     <button type="button"
-            v-on:click="$emit('remove-item', item.id)">
+            @click="$emit('remove-item', item.id)">
       &times;
     </button>
   </li>
@@ -18,6 +18,11 @@ export default {
   name: 'Item',
   props: {
     item: Object
+  },
+  filters: {
+    uppercase (value) {
+      return value.toUpperCase()
+    }
   }
 }
 </script>

@@ -5,9 +5,9 @@
     <ul>
       <Item
         v-for="item in items"
-        v-bind:key="item.id"
-        v-bind:item="item"
-        v-on:remove-item="removeItem"
+        :key="item.id"
+        :item="item"
+        @remove-item="removeItem"
       />
     </ul>
   </div>
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     removeItem (id) {
-      console.log(id)
+      this.$emit('remove-item', id)
     }
   }
 }
